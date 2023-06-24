@@ -20,7 +20,9 @@ def main():
         paste_title, paste_body = get_paste_data(pokemon_info)
         paste_url = pastebin_api.post_new_paste(paste_title, paste_body, '1M')
         print(paste_url)
-            
+
+
+     
 
 def get_pokemon_name():
     """Gets the name of the Pokemon specified as a command line parameter.
@@ -49,16 +51,28 @@ def get_paste_data(pokemon_info):
         (str, str): Title and body text for the PasteBin paste
     """    
     # TODO: Build the paste title
-    poke_name = pokemon_info['poke_name'].capitalize()
+    poke_name = pokemon_info['name'].capitalize()
     title = f'Abilities of {poke_name}'
 
     
     # TODO: Build the paste body text
-    abilities = pokemon_info['abilities']
     body_text = ''
-    for ability in abilities:
+    for ability in pokemon_info['abilities']:
         body_text += ability['ability']['name'] + '\n\n'
-    return (title, body_text[:-2])
+
+
+
+
+    #for pokemon in pokemon_info['results']:
+     #   body_text += pokemon['pokemon'] + '\n\n'
+
+
+
+    #abilities = pokemon_info['abilities']
+    #body_text = ''
+    #for ability in abilities:
+        #body_text += ability['ability']['name'] + '\n\n'
+    return title, body_text[:-2]
 
 if __name__ == '__main__':
     main()
